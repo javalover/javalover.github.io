@@ -1,0 +1,888 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,zxing,二维码," />
+
+
+
+
+
+  <link rel="alternate" href="http://proliang.com/feed" title="PRO.LIANG" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="二维码扫描zxing在某一些设备上会出现ArrayIndexOutOfBoundsException异常，异常信息类似：
+1java.lang.ArrayIndexOutOfBoundsException: length=629856; index=921599
+或着
+12345678910111213java.lang.ArrayIndexOutOfBoundsException: src.le">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维码扫描zxing异常ArrayIndexOutOfBoundsException解决">
+<meta property="og:url" content="http://proliang.com/zixing-indexoutofbounds-bugfix.html">
+<meta property="og:site_name" content="PRO.LIANG">
+<meta property="og:description" content="二维码扫描zxing在某一些设备上会出现ArrayIndexOutOfBoundsException异常，异常信息类似：
+1java.lang.ArrayIndexOutOfBoundsException: length=629856; index=921599
+或着
+12345678910111213java.lang.ArrayIndexOutOfBoundsException: src.le">
+<meta property="og:updated_time" content="2017-02-10T09:18:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二维码扫描zxing异常ArrayIndexOutOfBoundsException解决">
+<meta name="twitter:description" content="二维码扫描zxing在某一些设备上会出现ArrayIndexOutOfBoundsException异常，异常信息类似：
+1java.lang.ArrayIndexOutOfBoundsException: length=629856; index=921599
+或着
+12345678910111213java.lang.ArrayIndexOutOfBoundsException: src.le">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://proliang.com/zixing-indexoutofbounds-bugfix.html"/>
+
+
+
+
+
+  <title> 二维码扫描zxing异常ArrayIndexOutOfBoundsException解决 | PRO.LIANG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ad5e52857f2fcc80fc6d4c0621b757e3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">PRO.LIANG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">专注于移动互联网和Android开发</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://proliang.com/zixing-indexoutofbounds-bugfix.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Liang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="PRO.LIANG">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="PRO.LIANG" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                二维码扫描zxing异常ArrayIndexOutOfBoundsException解决
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-12-03T20:49:18+08:00">
+                2014-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/zixing-indexoutofbounds-bugfix.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="zixing-indexoutofbounds-bugfix.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/zixing-indexoutofbounds-bugfix.html" class="leancloud_visitors" data-flag-title="二维码扫描zxing异常ArrayIndexOutOfBoundsException解决">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>二维码扫描zxing在某一些设备上会出现ArrayIndexOutOfBoundsException异常，异常信息类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.lang.ArrayIndexOutOfBoundsException: length=629856; index=921599</div></pre></td></tr></table></figure>
+<p>或着</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">java.lang.ArrayIndexOutOfBoundsException: src.length=629856 srcPos=630000 dst.length=360000 dstPos=286400 length=800</div><div class="line">	at java.lang.System.arraycopy(Native Method)</div><div class="line">	at com.google.zxing.PlanarYUVLuminanceSource.getMatrix(PlanarYUVLuminanceSource.java:102)</div><div class="line">	at com.google.zxing.common.HybridBinarizer.getBlackMatrix(HybridBinarizer.java:70)</div><div class="line">	at com.google.zxing.BinaryBitmap.getBlackMatrix(BinaryBitmap.java:85)</div><div class="line">	at com.google.zxing.qrcode.QRCodeReader.decode(QRCodeReader.java:77)</div><div class="line">	at com.google.zxing.MultiFormatReader.decodeInternal(MultiFormatReader.java:171)</div><div class="line">	at com.google.zxing.MultiFormatReader.decodeWithState(MultiFormatReader.java:85)</div><div class="line">	at com.google.zxing.client.android.DecodeHandler.decode(DecodeHandler.java:82)</div><div class="line">	at com.google.zxing.client.android.DecodeHandler.handleMessage(DecodeHandler.java:58)</div><div class="line">	at android.os.Handler.dispatchMessage(Handler.java:99)</div><div class="line">	at android.os.Looper.loop(Looper.java:137)</div><div class="line">	at com.google.zxing.client.android.DecodeThread.run(DecodeThread.java:110)</div></pre></td></tr></table></figure>
+<p>版本不同，异常信息或许有一些差别。</p>
+<p>在我这里出现异常的手机是一部android4.2的，屏幕是960×540</p>
+<p>通过比较不同的设备，从zxing的log中发现了一些不同之处，下面这段是这部出现异常的手机的log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">I/com.google.zxing.client.android.camera.open.OpenCameraInterface(4212): Opening camera #0</div><div class="line">I/CameraConfiguration(4212): Screen resolution: Point(960, 540)</div><div class="line">I/CameraConfiguration(4212): Supported preview sizes: 1280x720 848x480 720x480 640x480 352x288 320x240 176x144</div><div class="line">I/CameraConfiguration(4212): Using largest suitable preview size: Point(1280, 720)</div><div class="line">I/CameraConfiguration(4212): Camera resolution: Point(1280, 720)</div></pre></td></tr></table></figure>
+<p>zxing设置照相机的分辨率是根据屏幕的大小(Screen resolution)在照相机支持的sizes中找到的，<br>从上面这段log中看出来手机屏幕只有960×540却最终使用了 1280×720的分辨率，所以在取景的时候出现了ArrayIndexOutOfBoundsException<br>在其他正常运行的设备中看这段log基本都是Camera resolution比Screen resolution小一些,例如下面这一段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">I/GingerbreadOpenCamera(7328): Opening camera #0</div><div class="line">I/CameraConfiguration(7328): Screen resolution: Point(768, 1184)</div><div class="line">I/CameraConfiguration(7328): Supported preview sizes: 1280x960 1280x720 800x480 720x480 640x480 576x432 480x320 384x288 352x288 320x240 240x160 176x144 </div><div class="line">I/CameraConfiguration(7328): Found best approximate preview size: Point(720, 480)</div><div class="line">I/CameraConfiguration(7328): Camera resolution: Point(720, 480)</div><div class="line">I/CameraConfiguration(7328): Initial camera parameters: ae-bracket-hdr=</div></pre></td></tr></table></figure></p>
+<p>因此我们需要修改程序让他滤过这个比screen resolution大的sizes</p>
+<p>最终在类CameraConfigurationManager中发现了findBestPreviewSizeValue是用来找这个sizes的方法，那么我们就是要修改这个方法了。<br>今天发现zxing有一些版本中这个方法不再CameraConfigurationManager中，而是在CameraConfigurationUtils这个类中</p>
+<p>有一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (maybeFlippedWidth == screenResolution.x &amp;amp;&amp;amp; maybeFlippedHeight == screenResolution.y) &#123;</div><div class="line">  Point exactPoint = <span class="keyword">new</span> Point(realWidth, realHeight);</div><div class="line">  Log.i(TAG, &amp;quot;Found preview size exactly matching screen size: &amp;quot; + exactPoint);</div><div class="line">  <span class="keyword">return</span> exactPoint;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这一段是找到了一个最合适的size，就是 support size 等于 screen size。我们要改的代码在这段代码附近</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> aspectRatio = (<span class="keyword">float</span>) maybeFlippedWidth/ (<span class="keyword">float</span>) maybeFlippedHeight;</div><div class="line"><span class="keyword">float</span> newDiff = Math.abs(aspectRatio - screenAspectRatio);</div><div class="line"><span class="keyword">if</span> (newDiff &amp;lt; diff) &#123;</div><div class="line">	bestSize = <span class="keyword">new</span> Point(realWidth, realHeight);</div><div class="line">	diff = newDiff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们给他加一个条件过滤掉比 screen 大的size</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> aspectRatio = (<span class="keyword">float</span>) maybeFlippedWidth/ (<span class="keyword">float</span>) maybeFlippedHeight;</div><div class="line"><span class="keyword">float</span> newDiff = Math.abs(aspectRatio - screenAspectRatio);</div><div class="line"><span class="comment">//保证宽高小于屏幕的宽高</span></div><div class="line"><span class="keyword">boolean</span> isSmaller = maybeFlippedWidth&amp;lt;screenResolution.y &amp;amp;&amp;amp; maybeFlippedHeight &amp;lt;screenResolution.x;</div><div class="line"><span class="keyword">if</span> (newDiff &amp;lt; diff &amp;amp;&amp;amp; isSmaller) &#123;</div><div class="line">	bestSize = <span class="keyword">new</span> Point(realWidth, realHeight);</div><div class="line">	diff = newDiff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>今天看了下最新版zxing的代码，算法有变动已经没有上面的这一段代码了，但是依然还是有这个异常出现。因此还是要过滤</p>
+<p>在exactPoint查找的后面，在while循环的末尾加一段代码过滤掉比screen大的size</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(maybeFlippedWidth &amp;gt; screenResolution.x &amp;amp;&amp;amp; maybeFlippedHeight &amp;gt; screenResolution.y) &#123;</div><div class="line">    it.remove();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>我这里的扫描二维码用的是竖屏的，上面所说的新版zxing代码改动的是在横屏的基础上修改的<br>其他人如果也遇到这个问题，在修改时，需要留意屏幕的方向，代码不一定跟这个是一样的<br>不知道这种把大于screen的size过滤掉的方法是不是最好的，但是这样改之后，程序是可以正常运行了，其他手机上也正常，如果谁有更好的解决方案，请留言告诉我～谢谢！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/zxing/" rel="tag"># zxing</a>
+          
+            <a href="/tags/二维码/" rel="tag"># 二维码</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/riches-family.html" rel="next" title="出身富贵人家到底有什么地方值得人向往？">
+                <i class="fa fa-chevron-left"></i> 出身富贵人家到底有什么地方值得人向往？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-year-end.html" rel="prev" title="2014年终总结">
+                2014年终总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="zixing-indexoutofbounds-bugfix.html"
+           data-title="二维码扫描zxing异常ArrayIndexOutOfBoundsException解决" data-url="http://proliang.com/zixing-indexoutofbounds-bugfix.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Liang" />
+          <p class="site-author-name" itemprop="name">Liang</p>
+          <p class="site-description motion-element" itemprop="description">人一定要靠自己！</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="http://proliang.com/feed" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">1.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"proliang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("iV7QoJid7bitJfuE1e4Rmhih-gzGzoHsz", "rHionfAngav976m39LhnK54b");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
