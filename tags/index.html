@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,11 +10,19 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -37,38 +45,12 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Java, Android, 移动互联网, 移动开发, 技术分享" />
@@ -77,12 +59,10 @@
 
 
 
-  <link rel="alternate" href="http://proliang.com/feed" title="PRO.LIANG" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -107,9 +87,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -132,17 +114,7 @@
 
 
 
-  <title>
-  
-
-  
-    标签 | PRO.LIANG
-  
-</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+  <title>标签 | PRO.LIANG</title>
   
 
 
@@ -162,18 +134,16 @@
 
 
 
+</head>
 
-
-
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,18 +189,18 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            归档
+            关于
           </a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -239,12 +209,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            关于
+            归档
           </a>
         </li>
       
@@ -268,7 +238,11 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
 	<h1 class="post-title" itemprop="name headline"></h1>
 
@@ -276,20 +250,32 @@
 
 </header>
 
-    
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 62 个标签
-        </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/ActionBar/" style="font-size: 12px; color: #ccc">ActionBar</a> <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Dialog/" style="font-size: 12px; color: #ccc">Dialog</a> <a href="/tags/Eclipse/" style="font-size: 12px; color: #ccc">Eclipse</a> <a href="/tags/HttpURLConnection/" style="font-size: 12px; color: #ccc">HttpURLConnection</a> <a href="/tags/Overflow-menu/" style="font-size: 12px; color: #ccc">Overflow menu</a> <a href="/tags/T420开启蓝牙/" style="font-size: 12px; color: #ccc">T420开启蓝牙</a> <a href="/tags/ajax评论/" style="font-size: 12px; color: #ccc">ajax评论</a> <a href="/tags/apk安装/" style="font-size: 12px; color: #ccc">apk安装</a> <a href="/tags/apk签名/" style="font-size: 12px; color: #ccc">apk签名</a> <a href="/tags/app安装监听/" style="font-size: 12px; color: #ccc">app安装监听</a> <a href="/tags/cache-dir/" style="font-size: 12px; color: #ccc">cache dir</a> <a href="/tags/ec2/" style="font-size: 12px; color: #ccc">ec2</a> <a href="/tags/git/" style="font-size: 15.6px; color: #a7a7a7">git</a> <a href="/tags/iptables/" style="font-size: 12px; color: #ccc">iptables</a> <a href="/tags/ip拨号/" style="font-size: 12px; color: #ccc">ip拨号</a> <a href="/tags/mac/" style="font-size: 12px; color: #ccc">mac</a> <a href="/tags/ormlite/" style="font-size: 12px; color: #ccc">ormlite</a> <a href="/tags/proguard/" style="font-size: 12px; color: #ccc">proguard</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a> <a href="/tags/ubuntu/" style="font-size: 12px; color: #ccc">ubuntu</a> <a href="/tags/urlrewrite/" style="font-size: 12px; color: #ccc">urlrewrite</a> <a href="/tags/vps/" style="font-size: 12px; color: #ccc">vps</a> <a href="/tags/wordpress/" style="font-size: 22.8px; color: #5c5c5c">wordpress</a> <a href="/tags/zxing/" style="font-size: 12px; color: #ccc">zxing</a> <a href="/tags/主题修改/" style="font-size: 15.6px; color: #a7a7a7">主题修改</a> <a href="/tags/二维码/" style="font-size: 12px; color: #ccc">二维码</a> <a href="/tags/人生/" style="font-size: 26.4px; color: #363636">人生</a> <a href="/tags/代码库/" style="font-size: 12px; color: #ccc">代码库</a> <a href="/tags/佛经/" style="font-size: 12px; color: #ccc">佛经</a> <a href="/tags/做你自己/" style="font-size: 12px; color: #ccc">做你自己</a> <a href="/tags/共享键盘鼠标/" style="font-size: 12px; color: #ccc">共享键盘鼠标</a> <a href="/tags/关于幸福/" style="font-size: 15.6px; color: #a7a7a7">关于幸福</a> <a href="/tags/吸引力法则/" style="font-size: 12px; color: #ccc">吸引力法则</a> <a href="/tags/命运/" style="font-size: 12px; color: #ccc">命运</a> <a href="/tags/图片缩放/" style="font-size: 12px; color: #ccc">图片缩放</a> <a href="/tags/域名跳转/" style="font-size: 12px; color: #ccc">域名跳转</a> <a href="/tags/太极拳/" style="font-size: 15.6px; color: #a7a7a7">太极拳</a> <a href="/tags/奋斗/" style="font-size: 12px; color: #ccc">奋斗</a> <a href="/tags/婚姻/" style="font-size: 15.6px; color: #a7a7a7">婚姻</a> <a href="/tags/常用参考手册/" style="font-size: 12px; color: #ccc">常用参考手册</a> <a href="/tags/年终总结/" style="font-size: 12px; color: #ccc">年终总结</a> <a href="/tags/心理/" style="font-size: 12px; color: #ccc">心理</a> <a href="/tags/心经/" style="font-size: 12px; color: #ccc">心经</a> <a href="/tags/我的作品/" style="font-size: 12px; color: #ccc">我的作品</a> <a href="/tags/拳论/" style="font-size: 15.6px; color: #a7a7a7">拳论</a> <a href="/tags/杂记/" style="font-size: 19.2px; color: #818181">杂记</a> <a href="/tags/正则表达式/" style="font-size: 15.6px; color: #a7a7a7">正则表达式</a> <a href="/tags/独立进程/" style="font-size: 12px; color: #ccc">独立进程</a> <a href="/tags/生活/" style="font-size: 12px; color: #ccc">生活</a> <a href="/tags/电脑技术/" style="font-size: 12px; color: #ccc">电脑技术</a> <a href="/tags/科学上网/" style="font-size: 12px; color: #ccc">科学上网</a> <a href="/tags/程序员级App/" style="font-size: 12px; color: #ccc">程序员级App</a> <a href="/tags/红杏/" style="font-size: 12px; color: #ccc">红杏</a> <a href="/tags/考驾照/" style="font-size: 12px; color: #ccc">考驾照</a> <a href="/tags/自动补全/" style="font-size: 12px; color: #ccc">自动补全</a> <a href="/tags/评论回复/" style="font-size: 12px; color: #ccc">评论回复</a> <a href="/tags/通知栏/" style="font-size: 12px; color: #ccc">通知栏</a> <a href="/tags/邮件通知/" style="font-size: 12px; color: #ccc">邮件通知</a> <a href="/tags/随身热点/" style="font-size: 12px; color: #ccc">随身热点</a>
-        </div>
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                目前共计 62 个标签
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/tags/ActionBar/" style="font-size: 12px; color: #ccc">ActionBar</a> <a href="/tags/Android/" style="font-size: 30px; color: #111">Android</a> <a href="/tags/Dialog/" style="font-size: 12px; color: #ccc">Dialog</a> <a href="/tags/Eclipse/" style="font-size: 12px; color: #ccc">Eclipse</a> <a href="/tags/HttpURLConnection/" style="font-size: 12px; color: #ccc">HttpURLConnection</a> <a href="/tags/Overflow-menu/" style="font-size: 12px; color: #ccc">Overflow menu</a> <a href="/tags/T420开启蓝牙/" style="font-size: 12px; color: #ccc">T420开启蓝牙</a> <a href="/tags/ajax评论/" style="font-size: 12px; color: #ccc">ajax评论</a> <a href="/tags/apk安装/" style="font-size: 12px; color: #ccc">apk安装</a> <a href="/tags/apk签名/" style="font-size: 12px; color: #ccc">apk签名</a> <a href="/tags/app安装监听/" style="font-size: 12px; color: #ccc">app安装监听</a> <a href="/tags/cache-dir/" style="font-size: 12px; color: #ccc">cache dir</a> <a href="/tags/ec2/" style="font-size: 12px; color: #ccc">ec2</a> <a href="/tags/git/" style="font-size: 15.6px; color: #a7a7a7">git</a> <a href="/tags/iptables/" style="font-size: 12px; color: #ccc">iptables</a> <a href="/tags/ip拨号/" style="font-size: 12px; color: #ccc">ip拨号</a> <a href="/tags/mac/" style="font-size: 12px; color: #ccc">mac</a> <a href="/tags/ormlite/" style="font-size: 12px; color: #ccc">ormlite</a> <a href="/tags/proguard/" style="font-size: 12px; color: #ccc">proguard</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/ssh/" style="font-size: 12px; color: #ccc">ssh</a> <a href="/tags/ubuntu/" style="font-size: 12px; color: #ccc">ubuntu</a> <a href="/tags/urlrewrite/" style="font-size: 12px; color: #ccc">urlrewrite</a> <a href="/tags/vps/" style="font-size: 12px; color: #ccc">vps</a> <a href="/tags/wordpress/" style="font-size: 22.8px; color: #5c5c5c">wordpress</a> <a href="/tags/zxing/" style="font-size: 12px; color: #ccc">zxing</a> <a href="/tags/主题修改/" style="font-size: 15.6px; color: #a7a7a7">主题修改</a> <a href="/tags/二维码/" style="font-size: 12px; color: #ccc">二维码</a> <a href="/tags/人生/" style="font-size: 26.4px; color: #363636">人生</a> <a href="/tags/代码库/" style="font-size: 12px; color: #ccc">代码库</a> <a href="/tags/佛经/" style="font-size: 12px; color: #ccc">佛经</a> <a href="/tags/做你自己/" style="font-size: 12px; color: #ccc">做你自己</a> <a href="/tags/共享键盘鼠标/" style="font-size: 12px; color: #ccc">共享键盘鼠标</a> <a href="/tags/关于幸福/" style="font-size: 15.6px; color: #a7a7a7">关于幸福</a> <a href="/tags/吸引力法则/" style="font-size: 12px; color: #ccc">吸引力法则</a> <a href="/tags/命运/" style="font-size: 12px; color: #ccc">命运</a> <a href="/tags/图片缩放/" style="font-size: 12px; color: #ccc">图片缩放</a> <a href="/tags/域名跳转/" style="font-size: 12px; color: #ccc">域名跳转</a> <a href="/tags/太极拳/" style="font-size: 15.6px; color: #a7a7a7">太极拳</a> <a href="/tags/奋斗/" style="font-size: 12px; color: #ccc">奋斗</a> <a href="/tags/婚姻/" style="font-size: 15.6px; color: #a7a7a7">婚姻</a> <a href="/tags/常用参考手册/" style="font-size: 12px; color: #ccc">常用参考手册</a> <a href="/tags/年终总结/" style="font-size: 12px; color: #ccc">年终总结</a> <a href="/tags/心理/" style="font-size: 12px; color: #ccc">心理</a> <a href="/tags/心经/" style="font-size: 12px; color: #ccc">心经</a> <a href="/tags/我的作品/" style="font-size: 12px; color: #ccc">我的作品</a> <a href="/tags/拳论/" style="font-size: 15.6px; color: #a7a7a7">拳论</a> <a href="/tags/杂记/" style="font-size: 19.2px; color: #818181">杂记</a> <a href="/tags/正则表达式/" style="font-size: 15.6px; color: #a7a7a7">正则表达式</a> <a href="/tags/独立进程/" style="font-size: 12px; color: #ccc">独立进程</a> <a href="/tags/生活/" style="font-size: 12px; color: #ccc">生活</a> <a href="/tags/电脑技术/" style="font-size: 12px; color: #ccc">电脑技术</a> <a href="/tags/科学上网/" style="font-size: 12px; color: #ccc">科学上网</a> <a href="/tags/程序员级App/" style="font-size: 12px; color: #ccc">程序员级App</a> <a href="/tags/红杏/" style="font-size: 12px; color: #ccc">红杏</a> <a href="/tags/考驾照/" style="font-size: 12px; color: #ccc">考驾照</a> <a href="/tags/自动补全/" style="font-size: 12px; color: #ccc">自动补全</a> <a href="/tags/评论回复/" style="font-size: 12px; color: #ccc">评论回复</a> <a href="/tags/通知栏/" style="font-size: 12px; color: #ccc">通知栏</a> <a href="/tags/邮件通知/" style="font-size: 12px; color: #ccc">邮件通知</a> <a href="/tags/随身热点/" style="font-size: 12px; color: #ccc">随身热点</a>
+            </div>
+          </div>
+        
       </div>
+      
+      
+      
+    </div>
+    
+    
     
   </div>
 
-          
+
           </div>
           
 
@@ -309,6 +295,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -317,19 +304,22 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.png"
-               alt="Liang" />
-          <p class="site-author-name" itemprop="name">Liang</p>
-           
-              <p class="site-description motion-element" itemprop="description">人一定要靠自己！</p>
           
+            <img class="site-author-image" itemprop="image"
+              src="/uploads/avatar.png"
+              alt="Liang" />
+          
+            <p class="site-author-name" itemprop="name">Liang</p>
+            <p class="site-description motion-element" itemprop="description">人一定要靠自己！</p>
         </div>
+
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+            
+              <a href="/archives/">
+            
                 <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -361,13 +351,6 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="http://proliang.com/feed" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
@@ -398,30 +381,36 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Liang</span>
+  <span class="author" itemprop="copyrightHolder">true</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
 
 
         
+
+
+
+
+
+
 
         
       </div>
@@ -433,7 +422,7 @@
         
       </div>
     
-    
+
   </div>
 
   
@@ -453,6 +442,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -479,33 +476,36 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
   
-
 
 
   
@@ -521,15 +521,14 @@
 
   
     
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "0ae56d4315d44c68907a4e1d381b7ed9",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+    
+  
+
+
+
+
+
   
 
 
@@ -538,117 +537,10 @@
 
 
 
-  
-  
 
   
 
-  
 
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("iV7QoJid7bitJfuE1e4Rmhih-gzGzoHsz", "rHionfAngav976m39LhnK54b");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
 
 
 
@@ -656,6 +548,11 @@
 
   
 
+  
+
+  
+
+  
 
   
 
